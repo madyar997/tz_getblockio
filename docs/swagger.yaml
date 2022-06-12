@@ -1,0 +1,46 @@
+basePath: /api/v1
+definitions:
+  model.Error:
+    properties:
+      message:
+        type: string
+    type: object
+  model.Result:
+    properties:
+      amount:
+        type: integer
+      from:
+        type: string
+      to:
+        type: string
+    type: object
+info:
+  contact:
+    email: madiar.997@gmail.com
+    name: Madyar Turgenbaev
+  description: This is a service for getting the address which balance changed the
+    most over the last 100 blocks
+  termsOfService: http://swagger.io/terms/
+  title: Swagger GetBlock Test Assignment
+  version: "1.0"
+paths:
+  /maximum-change:
+    get:
+      consumes:
+      - application/json
+      description: get the address of the account which balance changed the most(also
+        provides the receiver address) over the last 100 blocks
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Result'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Error'
+      tags:
+      - api/v1
+swagger: "2.0"
