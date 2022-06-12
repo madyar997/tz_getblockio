@@ -3,20 +3,20 @@ package handler
 import (
 	"github.com/labstack/echo/v4"
 	"net/http"
-	"tz_getblockio/service"
+	"tz_getblockio/internal/service"
 )
 
 type Handler struct {
 	mainNetService *service.MainNetService
 }
 
-func NewHandler(netService *service.MainNetService) *Handler{
+func NewHandler(netService *service.MainNetService) *Handler {
 	return &Handler{mainNetService: netService}
 }
 
-func(h Handler) GetMaximumChange(c echo.Context) error {
+func (h Handler) GetMaximumChange(c echo.Context) error {
 	address, err := h.mainNetService.GetMaxChange()
-	if err !=  nil {
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, err)
 	}
 	return c.JSON(http.StatusOK, address)

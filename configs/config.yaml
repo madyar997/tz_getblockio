@@ -1,0 +1,9 @@
+# server configuration
+server:
+  host: "localhost"
+  port: ":9090"
+
+# client configuration
+client:
+  apiKey: "74f75a54-1efa-4105-a88b-54cde98aa270"
+

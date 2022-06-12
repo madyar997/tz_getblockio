@@ -1,10 +1,17 @@
 package model
 
+import "math/big"
+
 type MainNetRequest struct {
 	Jsonrpc string        `json:"jsonrpc"`
 	Method  string        `json:"method"`
 	Params  []interface{} `json:"params"`
 	ID      string        `json:"id"`
+}
+
+type Param struct {
+	Address string
+	Bool    bool
 }
 
 type GetLastBlockResponse struct {
@@ -59,4 +66,10 @@ type GetBlockByNumberResponse struct {
 		TransactionsRoot string   `json:"transactionsRoot"`
 		Uncles           []string `json:"uncles"`
 	} `json:"result"`
+}
+
+type Result struct {
+	In     string   `json:"in"`
+	Out    string   `json:"out"`
+	Amount *big.Int `json:"amount"`
 }
