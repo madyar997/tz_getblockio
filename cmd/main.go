@@ -12,6 +12,13 @@ import (
 	"tz_getblockio/internal/service"
 )
 
+// @title           Swagger GetBlock Test Assignment
+// @version         1.0
+// @description     This is a service for getting the address which balance changed the most over the last 100 blocks
+// @termsOfService  http://swagger.io/terms/
+// @contact.name   Madyar Turgenbaev
+// @contact.email  madiar.997@gmail.com
+// @BasePath  /api/v1
 func initConfig() (config.Config, error) {
 	var cfg config.Config
 	f, err := os.Open("./configs/config.yaml")
@@ -37,10 +44,8 @@ func main() {
 	svc := service.NewMainNetService(cfg, cli)
 	h := handler.NewHandler(svc)
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
-	e.GET("/maximum-change", h.GetMaximumChange)
+	g := e.Group("/api/v1")
+	g.GET("/maximum-change", h.GetMaximumChange)
 	e.Logger.Fatal(e.Start(cfg.Server.Port))
 
 }

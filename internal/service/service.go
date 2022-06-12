@@ -93,9 +93,9 @@ func (m MainNetService) GetBlockByNumber(addressDec int64) (model.GetBlockByNumb
 
 func (m MainNetService) GetMaxChange() (model.Result, error) {
 	maxValueResult := model.Result{
-		In:     "",
-		Out:    "",
-		Amount: big.NewInt(0),
+		From:        "",
+		To:          "",
+		AmountInWei: big.NewInt(0),
 	}
 	lastBlockNumber, err := m.GetLastBlockNumber()
 	lastBlockNumberDec, err := strconv.ParseInt(helper.HexaNumberToInteger(lastBlockNumber.Result), 16, 32)
@@ -127,7 +127,7 @@ func (m MainNetService) GetMaxChange() (model.Result, error) {
 	close(ch)
 
 	for _, v := range results {
-		if v.Amount.Cmp(maxValueResult.Amount) == 1 {
+		if v.AmountInWei.Cmp(maxValueResult.AmountInWei) == 1 {
 			maxValueResult = v
 		}
 	}
@@ -138,9 +138,9 @@ func (m MainNetService) GetMaxChange() (model.Result, error) {
 func (m MainNetService) getMaxValueResultFromBlock(address int64, wg *sync.WaitGroup, ch chan<- model.Result) error {
 	defer wg.Done()
 	result := model.Result{
-		In:     "",
-		Out:    "",
-		Amount: big.NewInt(0),
+		From:        "",
+		To:          "",
+		AmountInWei: big.NewInt(0),
 	}
 	blockData, err := m.GetBlockByNumber(address)
 	if err != nil {
@@ -153,10 +153,10 @@ func (m MainNetService) getMaxValueResultFromBlock(address int64, wg *sync.WaitG
 		if err != nil {
 			return err
 		}
-		if valueDec.Cmp(result.Amount) == 1 {
-			result.Amount = valueDec
-			result.In = transaction.From
-			result.Out = transaction.To
+		if valueDec.Cmp(result.AmountInWei) == 1 {
+			result.AmountInWei = valueDec
+			result.From = transaction.From
+			result.To = transaction.To
 		}
 	}
 	ch <- result

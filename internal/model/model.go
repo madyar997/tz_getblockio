@@ -69,7 +69,11 @@ type GetBlockByNumberResponse struct {
 }
 
 type Result struct {
-	In     string   `json:"in"`
-	Out    string   `json:"out"`
-	Amount *big.Int `json:"amount"`
+	From        string   `json:"from"`
+	To          string   `json:"to"`
+	AmountInWei *big.Int `json:"amount"`
+}
+
+type Error struct {
+	Message string `json:"message"`
 }
