@@ -4,6 +4,7 @@ go 1.17
 
 require (
 	github.com/labstack/echo/v4 v4.7.2
+	github.com/swaggo/swag v1.8.2
 	gopkg.in/yaml.v2 v2.4.0
 )
 
@@ -55,7 +56,6 @@ require (
 	github.com/spf13/viper v1.12.0 // indirect
 	github.com/stretchr/testify v1.7.2 // indirect
 	github.com/subosito/gotenv v1.4.0 // indirect
-	github.com/swaggo/swag v1.8.2 // indirect
 	github.com/toqueteos/webbrowser v1.2.0 // indirect
 	github.com/urfave/cli/v2 v2.8.1 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
